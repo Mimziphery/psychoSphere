@@ -8,3 +8,4 @@ C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csp
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csproj.CoreCompileInputs.cache
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exe
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.pdb
+C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exitPage.resources
