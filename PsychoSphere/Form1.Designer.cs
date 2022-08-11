@@ -47,6 +47,7 @@ namespace PsychoSphere
             this.startButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.startButton.TabIndex = 0;
             this.startButton.TabStop = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             this.startButton.MouseLeave += new System.EventHandler(this.startButton_MouseLeave);
             this.startButton.MouseHover += new System.EventHandler(this.startButton_MouseHover);
             // 

@@ -59,5 +59,13 @@ namespace PsychoSphere
             exitPage.ShowDialog();
             this.Close();
         }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            theGame gamewindow = new theGame();
+            gamewindow.ShowDialog();
+            this.Close();
+        }
     }
 }

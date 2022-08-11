@@ -9,3 +9,4 @@ C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csp
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exe
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.pdb
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exitPage.resources
+C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.theGame.resources
