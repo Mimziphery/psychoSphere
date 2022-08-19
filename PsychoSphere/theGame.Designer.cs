@@ -45,7 +45,7 @@ namespace PsychoSphere
             // 
             this.player.BackColor = System.Drawing.Color.Transparent;
             this.player.Image = global::PsychoSphere.Properties.Resources.player_01;
-            this.player.Location = new System.Drawing.Point(58, 407);
+            this.player.Location = new System.Drawing.Point(25, 412);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(113, 137);
             this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -57,8 +57,9 @@ namespace PsychoSphere
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PsychoSphere.Properties.Resources.dvizecka_pozadina;
-            this.ClientSize = new System.Drawing.Size(1426, 589);
+            this.ClientSize = new System.Drawing.Size(1493, 589);
             this.Controls.Add(this.player);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "theGame";
             this.Text = "theGame";

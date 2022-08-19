@@ -42,6 +42,14 @@ namespace PsychoSphere
 
         private void theGame_Load(object sender, EventArgs e)
         {
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            this.SetStyle(
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.UserPaint |
+            ControlStyles.DoubleBuffer,
+            true);
 
         }
 
