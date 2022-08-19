@@ -29,17 +29,25 @@ namespace PsychoSphere
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timerTick = new System.Windows.Forms.Timer(this.components);
             this.player = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timerTick
+            // 
+            this.timerTick.Enabled = true;
+            this.timerTick.Interval = 20;
+            this.timerTick.Tick += new System.EventHandler(this.timerTick_Tick);
             // 
             // player
             // 
             this.player.BackColor = System.Drawing.Color.Transparent;
             this.player.Image = global::PsychoSphere.Properties.Resources.player_01;
-            this.player.Location = new System.Drawing.Point(21, 437);
+            this.player.Location = new System.Drawing.Point(58, 407);
             this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(83, 107);
+            this.player.Size = new System.Drawing.Size(113, 137);
             this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.player.TabIndex = 0;
             this.player.TabStop = false;
@@ -48,19 +56,22 @@ namespace PsychoSphere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::PsychoSphere.Properties.Resources.bckgrnd_final;
-            this.ClientSize = new System.Drawing.Size(803, 604);
+            this.BackgroundImage = global::PsychoSphere.Properties.Resources.dvizecka_pozadina;
+            this.ClientSize = new System.Drawing.Size(1426, 589);
             this.Controls.Add(this.player);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "theGame";
             this.Text = "theGame";
+            this.Load += new System.EventHandler(this.theGame_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.theGame_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.theGame_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private System.Windows.Forms.Timer timerTick;
         private System.Windows.Forms.PictureBox player;
     }
 }

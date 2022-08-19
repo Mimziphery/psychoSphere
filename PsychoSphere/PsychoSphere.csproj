@@ -155,5 +155,8 @@
   <ItemGroup>
     <None Include="Resources\bckgrnd_final.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dvizecka pozadina.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
