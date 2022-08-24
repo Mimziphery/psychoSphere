@@ -12,103 +12,50 @@ namespace PsychoSphere
 {
     public partial class theGame : Form
     {
-        public List<SceneObjects> DrawableList = new List<SceneObjects>();
-        bool goLeft, goRight, jump;
-        int force = 8;
-        int playerSpeed = 10;
-        int backgroundspeed = 8;
-        Bitmap BitBackground, BitPlayer;
-        Bitmap Background;
-        Bitmap PlayerImage;
-        GamePanel stage;
+        Timer graphicsTimer;
+        GameLoop gameLoop = null;
 
-       
-        private Image playerimage = Properties.Resources.player_comp as Image;
-        public Player player = new Player(0, 0); //Napraviv nov objekt kade sto kje gi sodrzi tie koordinati 
-
-
-        public System.Drawing.Graphics Graphics { get; } //Ova e za paint
-
-        public int CanavasSlider = 0;
         public theGame()
         {
             InitializeComponent();
-            Initialize();
-            this.stage = new GamePanel();
-            stage.Paint += new PaintEventHandler(Stage_Paint);
-        }
-        private void Initialize()
-        {
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            BitBackground = new Bitmap(Properties.Resources.dvizecka_pozadina);
-            BitPlayer = new Bitmap(Properties.Resources.player_comp);
-            Background = new Bitmap(BitBackground, BitBackground.Width, BitBackground.Height);
-            PlayerImage = new Bitmap(BitPlayer, BitPlayer.Width, BitPlayer.Height);
-        }
-        private void timerTick_Tick(object sender, EventArgs e)
-        {
-            if (goLeft == true)
-            {
-                player.dx += playerSpeed;
-            }
-
-            if (goRight == true)
-            {
-                player.dx -= playerSpeed;
-            }
-
-
-
-            Stage.Location = new Point(CanavasSlider, 0);
-
+            // Initialize Paint Event
+            Paint += theGame_Paint;
+            // Initialize graphicsTimer
+            graphicsTimer = new Timer();
+            graphicsTimer.Interval = 1000 / 120;
+            graphicsTimer.Tick += GraphicsTimer_Tick;
         }
 
         private void theGame_Load(object sender, EventArgs e)
         {
-            
+            Rectangle resolution = Screen.PrimaryScreen.Bounds;
 
+            // Initialize Game
+            Game myGame = new Game();
+            myGame.Resolution = new Size(resolution.Width, resolution.Height);
+
+            // Initialize & Start GameLoop
+            gameLoop = new GameLoop();
+            gameLoop.Load(myGame);
+            gameLoop.Start();
+
+            // Start Graphics Timer
+            graphicsTimer.Start();
         }
 
-        private void theGame_KeyUp(object sender, KeyEventArgs e)
+        private void theGame_Paint(object sender, PaintEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (gameLoop != null)
             {
-                goLeft = true;
+                // Draw game graphics on Form1
+                gameLoop.Draw(e.Graphics);
             }
-            if (e.KeyCode == Keys.Right)
-            {
-                goRight = true;
-            }
-
         }
 
-        private void theGame_KeyDown(object sender, KeyEventArgs e)
+        private void GraphicsTimer_Tick(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
-            {
-                goLeft = false;
-            }
-            if (e.KeyCode == Keys.Right)
-            {
-                goRight = false;
-            }
-
+            // Refresh Form1 graphics
+            Invalidate();
         }
-        public void Stage_Paint(object sender, PaintEventArgs e)
-        {
-            Stage.BackgroundImage = Properties.Resources.dvizecka_pozadina;
-            player.image = PlayerImage;
-            DrawableList.Add(player);
-            Stage.Invalidate();
-            foreach (SceneObjects o in DrawableList)
-            {
-
-                o.Draw(e.Graphics);
-                
-            }
-        }
-        
     }
 }
