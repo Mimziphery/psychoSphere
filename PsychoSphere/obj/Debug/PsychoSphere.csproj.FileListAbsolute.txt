@@ -10,3 +10,15 @@ C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exe
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.pdb
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exitPage.resources
 C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.theGame.resources
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\bin\Debug\PsychoSphere.exe.config
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\bin\Debug\PsychoSphere.exe
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\bin\Debug\PsychoSphere.pdb
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csprojAssemblyReference.cache
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.mainMenu.resources
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exitPage.resources
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.Properties.Resources.resources
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.theGame.resources
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csproj.GenerateResource.cache
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csproj.CoreCompileInputs.cache
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exe
+C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.pdb

@@ -11,7 +11,7 @@ namespace PsychoSphere
     public class Player : SceneObjects
     {
         
-        public Image image = Properties.Resources.player_01 as Image;
+        public Bitmap image;
 
         private bool isJumpingPlayer;  //Proverka za dali skoka ili ne 
         private bool Stop_Horizontal_Movement { get; set; }
@@ -30,7 +30,8 @@ namespace PsychoSphere
             Stop_Horizontal_Movement = false;
 
             //Deklaracija na int promenlivi
-            height = 50;
+            width = 100;
+            height = 100;
             dy = 0;
             dx = 0;
             nextPlatform = 1;

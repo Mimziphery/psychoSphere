@@ -42,9 +42,10 @@ namespace PsychoSphere
             // 
             // Stage
             // 
+            this.Stage.BackColor = System.Drawing.SystemColors.Control;
             this.Stage.Location = new System.Drawing.Point(-2, -1);
             this.Stage.Name = "Stage";
-            this.Stage.Size = new System.Drawing.Size(1496, 569);
+            this.Stage.Size = new System.Drawing.Size(1496, 597);
             this.Stage.TabIndex = 1;
             this.Stage.Paint += new System.Windows.Forms.PaintEventHandler(this.Stage_Paint);
             // 
@@ -52,6 +53,7 @@ namespace PsychoSphere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Indigo;
             this.ClientSize = new System.Drawing.Size(1493, 589);
             this.Controls.Add(this.Stage);
             this.DoubleBuffered = true;
