@@ -44,9 +44,10 @@ namespace PsychoSphere
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Indigo;
             this.BackgroundImage = global::PsychoSphere.Properties.Resources.dvizecka_pozadina;
-            this.ClientSize = new System.Drawing.Size(1493, 589);
+            this.ClientSize = new System.Drawing.Size(1351, 589);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.KeyPreview = true;
             this.Name = "theGame";
             this.Text = "theGame";
             this.Load += new System.EventHandler(this.theGame_Load);

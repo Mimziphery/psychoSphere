@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace PsychoSphere
 {
@@ -14,6 +15,9 @@ namespace PsychoSphere
     {
         Timer graphicsTimer;
         GameLoop gameLoop = null;
+        GameSprite player;
+
+
 
         public theGame()
         {
@@ -24,7 +28,9 @@ namespace PsychoSphere
             graphicsTimer = new Timer();
             graphicsTimer.Interval = 1000 / 120;
             graphicsTimer.Tick += GraphicsTimer_Tick;
+            
         }
+
 
         private void theGame_Load(object sender, EventArgs e)
         {
@@ -33,6 +39,13 @@ namespace PsychoSphere
             // Initialize Game
             Game myGame = new Game();
             myGame.Resolution = new Size(resolution.Width, resolution.Height);
+            player = new GameSprite();
+            player.SpriteImage = Properties.Resources.player_01;
+            player.Width = 60;
+            player.Height = 85;
+            player.X = 100;
+            player.Y = 100;
+
 
             // Initialize & Start GameLoop
             gameLoop = new GameLoop();
@@ -57,5 +70,8 @@ namespace PsychoSphere
             // Refresh Form1 graphics
             Invalidate();
         }
+
+       
     }
 }
+

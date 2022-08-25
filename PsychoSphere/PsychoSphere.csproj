@@ -51,7 +51,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameLoop.cs" />
     <Compile Include="GameSprite.cs" />
-    <Compile Include="SceneObjects.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +165,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\player-comp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platform1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platform2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platform3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

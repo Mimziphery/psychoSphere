@@ -11,7 +11,10 @@ namespace PsychoSphere
     class Game
     {
 
-        private GameSprite playerSprite;
+        public GameSprite playerSprite;
+        private GameSprite platform1Sprite;
+        private GameSprite platform2Sprite;
+        private GameSprite platform3Sprite;
 
         public Size Resolution { get; set; }
 
@@ -19,14 +22,46 @@ namespace PsychoSphere
         {
             // Load new sprite class
             playerSprite = new GameSprite();
+            platform1Sprite = new GameSprite();
+            platform2Sprite = new GameSprite();
+            platform3Sprite = new GameSprite();
+
+
             // Load sprite image
             playerSprite.SpriteImage = Properties.Resources.player_01;
+
+            platform1Sprite.SpriteImage = Properties.Resources.platform1;
+            platform2Sprite.SpriteImage = Properties.Resources.platform2;
+            platform3Sprite.SpriteImage = Properties.Resources.platform3;
+
             // Set sprite height & width in pixels
             playerSprite.Width = 60;
             playerSprite.Height = 85;
+
+            platform1Sprite.Width = 60;
+            platform1Sprite.Height = 85;
+
+            platform2Sprite.Width = 60;
+            platform2Sprite.Height = 85;
+
+            platform3Sprite.Width = 60;
+            platform3Sprite.Height = 85;
+
+
             // Set sprite coodinates
             playerSprite.X = 300;
             playerSprite.Y = 300;
+
+            platform1Sprite.X = 600;
+            platform1Sprite.Y = 300;
+
+            platform2Sprite.X = 400;
+            platform2Sprite.Y = 400;
+
+            platform3Sprite.X = 500;
+            platform3Sprite.Y = 100;
+
+
             // Set sprite Velocity
             playerSprite.Velocity = 300;
         }
@@ -67,6 +102,10 @@ namespace PsychoSphere
         {
             // Draw Player Sprite
             playerSprite.Draw(gfx);
+            platform1Sprite.Draw(gfx);
+            platform2Sprite.Draw(gfx);
+            platform3Sprite.Draw(gfx);
+            
         }
 
     }
