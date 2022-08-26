@@ -15,6 +15,7 @@ namespace PsychoSphere
     {
         Timer graphicsTimer;
         GameLoop gameLoop = null;
+        Game game;
        
 
 
@@ -28,7 +29,11 @@ namespace PsychoSphere
             graphicsTimer = new Timer();
             graphicsTimer.Interval = 1000 / 120;
             graphicsTimer.Tick += GraphicsTimer_Tick;
-            
+
+           
+         
+           
+
         }
 
 

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace PsychoSphere
 {
-    class Game
+    class Game : GameLoop
     {
 
         public GameSprite playerSprite;
@@ -86,6 +86,7 @@ namespace PsychoSphere
         {
             // Unload graphics
             // Turn off game music
+
         }
 
         public void Update(TimeSpan gameTime)
@@ -95,28 +96,36 @@ namespace PsychoSphere
             // Calculate sprite movement based on Sprite Velocity and GameTimeElapsed
             int moveDistance = (int)(playerSprite.Velocity * gameTimeElapsed);
 
-            
+
+            if (playerSprite.Y + playerSprite.Height > 600)
+            {
+
+                //snap the player's bottom to the ground's position
+                playerSprite.Y = 632 - playerSprite.Height;
+
+                //stop the player falling
+                playerSprite.Y = 0;
+
+                //allow jumping again
+                isJumping = false;
+            }
+            else
+            {
+                //gravity accelerates the movement speed
+                playerSprite.Y++;
+            }
+
 
 
             // Move player sprite, when Arrow Keys are pressed on Keyboard
             if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
             {
                 playerSprite.X += moveDistance;
+
             }
             else if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0)
             {
                 playerSprite.X -= moveDistance;
-            }
-            else if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
-            {
-                if (!isJumping)
-                {
-                    //going up
-                    playerSprite.Y = -jumpSpeed;
-
-                    //disallow jumping while already jumping
-                    isJumping = true;
-                }
             }
             else if ((Keyboard.GetKeyStates(Key.Down) & KeyStates.Down) > 0)
             {
@@ -129,11 +138,11 @@ namespace PsychoSphere
 
 
 
+        }
 
-           
-
-
-
+        private void Restart()
+        {
+            Stop();
 
         }
 
@@ -157,8 +166,12 @@ namespace PsychoSphere
 
                 if (playerRect.IntersectsWith(platformRect))
                 {
+                    if (platform.Y >  playerSprite.Y + playerSprite.Height/2)
+                    {
+                        playerSprite.Y = platform.Y - playerSprite.Height;
+                    }
                     
-                    playerSprite.Y = platform.Y - playerSprite.Height;
+              
                     jumpSpeed = 0;
                 }
 
