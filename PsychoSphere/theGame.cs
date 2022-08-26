@@ -15,7 +15,7 @@ namespace PsychoSphere
     {
         Timer graphicsTimer;
         GameLoop gameLoop = null;
-        GameSprite player;
+       
 
 
 
@@ -39,12 +39,7 @@ namespace PsychoSphere
             // Initialize Game
             Game myGame = new Game();
             myGame.Resolution = new Size(resolution.Width, resolution.Height);
-            player = new GameSprite();
-            player.SpriteImage = Properties.Resources.player_01;
-            player.Width = 60;
-            player.Height = 85;
-            player.X = 100;
-            player.Y = 100;
+           
 
 
             // Initialize & Start GameLoop
@@ -71,7 +66,7 @@ namespace PsychoSphere
             Invalidate();
         }
 
-       
+        
     }
 }
 

@@ -16,14 +16,18 @@ namespace PsychoSphere
         public float Height { get; set; }
         public int Velocity { get; set; }
 
+        
+
         public GameSprite()
         {
+            
         }
 
         public void Draw(Graphics gfx)
         {
             // Draw sprite image on screen
             gfx.DrawImage(SpriteImage, new RectangleF(X, Y, Width, Height));
+            
         }
     }
 }
