@@ -23,13 +23,56 @@ namespace PsychoSphere
 
         public Size Resolution { get; set; }
 
+        public void LoadPlatforms()
+        {
+            Random heightANDdistance = new Random();
+            int randPlatform;
+            int distance;
+            int height;
+            int x = 100;
+            int y = 0;
+            for (int i=0; i<10; i++)
+            {
+                randPlatform = heightANDdistance.Next(0, 100);
+                distance = heightANDdistance.Next(105, 205);
+                height = heightANDdistance.Next(200, 600);
+
+                y = 632 - height;
+
+                GameSprite temp = new GameSprite();
+                temp.X = x;
+                temp.Y = y;
+                
+                if (randPlatform % 3 == 0)
+                {
+                    temp.SpriteImage = Properties.Resources.platform1;
+                    temp.Height = 50;
+                    temp.Width = 80;
+                }
+                else if(randPlatform % 3 == 1)
+                {
+                    temp.SpriteImage = Properties.Resources.platform2;
+                    temp.Height = 100;
+                    temp.Width = 80;
+                }
+                else
+                {
+                    temp.SpriteImage = Properties.Resources.platform3;
+                    temp.Height = 40;
+                    temp.Width = 80;
+                }
+                    
+
+                platforms.Add(temp);
+                x += distance;
+
+            }
+
+        }
         public void Load()
         {
             // Load new sprite class
             playerSprite = new GameSprite();
-            platform1Sprite = new GameSprite();
-            platform2Sprite = new GameSprite();
-            platform3Sprite = new GameSprite();
             platforms = new List<GameSprite>();
             isJumping = false;
             collision = false;
@@ -40,46 +83,22 @@ namespace PsychoSphere
             // Load sprite image
             playerSprite.SpriteImage = Properties.Resources.player_01;
 
-            platform1Sprite.SpriteImage = Properties.Resources.platform1;
-            platform2Sprite.SpriteImage = Properties.Resources.platform2;
-            platform3Sprite.SpriteImage = Properties.Resources.platform3;
-
             // Set sprite height & width in pixels
             playerSprite.Width = 60;
             playerSprite.Height = 85;
-
-            
-            platform1Sprite.Width = 60;
-            platform1Sprite.Height = 85;
-
-            platform2Sprite.Width = 60;
-            platform2Sprite.Height = 85;
-
-            platform3Sprite.Width = 60;
-            platform3Sprite.Height = 85;
 
 
             // Set sprite coodinates
             playerSprite.X = 0;
             playerSprite.Y = 200;
 
-            platform1Sprite.X = 600;
-            platform1Sprite.Y = 300;
-
-            platform2Sprite.X = 400;
-            platform2Sprite.Y = 400;
-
-            platform3Sprite.X = 500;
-            platform3Sprite.Y = 100;
-
-
             // Set sprite Velocity
             playerSprite.Velocity = 300;
 
-            //Add platforms to list
-            platforms.Add(platform1Sprite);
-            platforms.Add(platform2Sprite);
-            platforms.Add(platform3Sprite);
+            //Add platforms
+            LoadPlatforms();
+
+
 
         }
 
@@ -214,7 +233,13 @@ namespace PsychoSphere
         public void Draw(Graphics gfx)
         {
             // Draw Player Sprite
-            
+            if (playerSprite.X >= 1500 - playerSprite.Width)
+            {
+                playerSprite.X = 0;
+                LoadPlatforms();
+            }
+                
+
 
             //playerSprite.Draw(gfx);
             RectangleF playerRect = new RectangleF(playerSprite.X, playerSprite.Y, playerSprite.Width, playerSprite.Height);
@@ -228,7 +253,7 @@ namespace PsychoSphere
                 if (playerRect.IntersectsWith(platformRect))
                 {
 
-                    if (platform.Y > playerSprite.Y + playerSprite.Height / 2)
+                    if (platform.Y > playerSprite.Y + playerSprite.Height - 10)
                     {
                          //put the player on that platform
                         collision = true;
