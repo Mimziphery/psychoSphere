@@ -18,7 +18,7 @@ namespace PsychoSphere
         private GameSprite platform1Sprite;
         private GameSprite platform2Sprite;
         private GameSprite platform3Sprite;
-        private int jumpSpeed;
+        private Boolean collision;
         
 
         public Size Resolution { get; set; }
@@ -32,7 +32,8 @@ namespace PsychoSphere
             platform3Sprite = new GameSprite();
             platforms = new List<GameSprite>();
             isJumping = false;
-            jumpSpeed = 10;
+            collision = false;
+            
 
 
 
@@ -96,27 +97,14 @@ namespace PsychoSphere
             // Calculate sprite movement based on Sprite Velocity and GameTimeElapsed
             int moveDistance = (int)(playerSprite.Velocity * gameTimeElapsed);
 
-
-            if (playerSprite.Y + playerSprite.Height > 600)
-            {
-
-                //snap the player's bottom to the ground's position
-                playerSprite.Y = 632 - playerSprite.Height;
-
-                //stop the player falling
-                playerSprite.Y = 0;
-
-                //allow jumping again
-                isJumping = false;
-            }
-            else
-            {
-                //gravity accelerates the movement speed
-                playerSprite.Y++;
-            }
+            UpdateMovement(moveDistance);
 
 
 
+        }
+
+        private void UpdateMovement(int moveDistance)
+        {
             // Move player sprite, when Arrow Keys are pressed on Keyboard
             if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
             {
@@ -127,19 +115,37 @@ namespace PsychoSphere
             {
                 playerSprite.X -= moveDistance;
             }
-            else if ((Keyboard.GetKeyStates(Key.Down) & KeyStates.Down) > 0)
+            else if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
             {
-                playerSprite.Y += moveDistance;
+                playerSprite.Y -= moveDistance; //go up
+                collision = false;
             }
-            else if ((Keyboard.GetKeyStates(Key.Up) & KeyStates.Down) > 0)
+            else if(playerSprite.Y + playerSprite.Height > 550) //check if played touched the ground
             {
-                playerSprite.Y -= moveDistance;
+
+                //snap the player's bottom to the ground's position
+                playerSprite.Y = 550 - playerSprite.Height;
+                collision = true;
+
+                //allow jumping again
+                isJumping = false;
             }
+            else if (collision)
+            {
+                playerSprite.Y += 0;
+            }
+            else
+            {
+                playerSprite.Y += moveDistance; //go down
 
+            }
+       
 
+            
+            
+            
 
         }
-
         private void Restart()
         {
             Stop();
@@ -156,32 +162,29 @@ namespace PsychoSphere
 
             gfx.DrawImage(playerSprite.SpriteImage, playerRect);
 
-
-
             foreach (GameSprite platform in platforms)
             {
                 RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
 
                 gfx.DrawImage(platform.SpriteImage, platformRect);
 
+              
                 if (playerRect.IntersectsWith(platformRect))
                 {
-                    if (platform.Y >  playerSprite.Y + playerSprite.Height/2)
+                    if (platform.Y > playerSprite.Y + playerSprite.Height / 2)
                     {
-                        playerSprite.Y = platform.Y - playerSprite.Height;
+                        
+                       
+                        playerSprite.Y = platform.Y - playerSprite.Height; //put the player on that platform
+                        collision = true;
+                        break;
+
                     }
-                    
-              
-                    jumpSpeed = 0;
+
                 }
-
-
+               
             }
-
-
-
             
-
 
         }
 
