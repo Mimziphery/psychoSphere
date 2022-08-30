@@ -175,5 +175,29 @@
   <ItemGroup>
     <None Include="Resources\platform3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odenje.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odenje2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skokanje.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stoenje.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odenje2FLIPPED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odenjeFLIPPED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skokanjeFLIPPED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stoenjeFLIPPED.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

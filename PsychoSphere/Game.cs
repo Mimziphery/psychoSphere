@@ -103,22 +103,40 @@ namespace PsychoSphere
 
         }
 
+        bool moveLeft = false;
+        bool moveRight = false;
+
+        bool flagLeft = true;
+        bool flagRight = true;
         private void UpdateMovement(int moveDistance)
         {
+            moveRight = false;
+            moveLeft = false;
+            isJumping = false;
+
             // Move player sprite, when Arrow Keys are pressed on Keyboard
             if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
             {
                 playerSprite.X += moveDistance;
+                moveRight = true;
+
+                moveLeft = false;
 
             }
             if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0)
             {
                 playerSprite.X -= moveDistance;
+                moveLeft = true;
+
+                moveRight = false;
             }
             if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
             {
                 playerSprite.Y -= moveDistance; //go up
+                isJumping = true;
+
                 collision = false;
+                
             }
             else if(playerSprite.Y + playerSprite.Height > 550) //check if played touched the ground
             {
@@ -133,17 +151,58 @@ namespace PsychoSphere
             else if (collision)
             {
                 playerSprite.Y += 0;
+                isJumping = false;
             }
             else
             {
                 playerSprite.Y += moveDistance; //go down
 
             }
-       
 
-            
-            
-            
+
+            if (moveLeft)
+            {
+                if (flagLeft)
+                {
+                    playerSprite.SpriteImage = Properties.Resources.odenjeFLIPPED;
+                    flagLeft = false;
+                }
+                else
+                {
+                    playerSprite.SpriteImage = Properties.Resources.odenje2FLIPPED;
+                    flagLeft = true;
+                }
+            }
+            if (moveRight)
+            {
+                if (flagRight)
+                {
+                    playerSprite.SpriteImage = Properties.Resources.odenje;
+                    flagRight = false;
+                }
+                else
+                {
+                    playerSprite.SpriteImage = Properties.Resources.odenje2;
+                    flagRight = true;
+                }
+            }
+            if (isJumping)
+            {
+                if (moveLeft)
+                {
+                    playerSprite.SpriteImage = Properties.Resources.skokanjeFLIPPED;
+
+                }
+                else
+                {
+                    playerSprite.SpriteImage = Properties.Resources.skokanje;
+
+                }
+
+            }
+           
+
+
 
         }
         private void Restart()

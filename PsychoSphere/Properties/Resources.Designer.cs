@@ -183,6 +183,46 @@ namespace PsychoSphere.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap odenje {
+            get {
+                object obj = ResourceManager.GetObject("odenje", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap odenje2 {
+            get {
+                object obj = ResourceManager.GetObject("odenje2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap odenje2FLIPPED {
+            get {
+                object obj = ResourceManager.GetObject("odenje2FLIPPED", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap odenjeFLIPPED {
+            get {
+                object obj = ResourceManager.GetObject("odenjeFLIPPED", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap options_01 {
             get {
                 object obj = ResourceManager.GetObject("options-01", resourceCulture);
@@ -253,6 +293,26 @@ namespace PsychoSphere.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap skokanje {
+            get {
+                object obj = ResourceManager.GetObject("skokanje", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap skokanjeFLIPPED {
+            get {
+                object obj = ResourceManager.GetObject("skokanjeFLIPPED", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap start_01 {
             get {
                 object obj = ResourceManager.GetObject("start-01", resourceCulture);
@@ -266,6 +326,26 @@ namespace PsychoSphere.Properties {
         internal static System.Drawing.Bitmap start_hover {
             get {
                 object obj = ResourceManager.GetObject("start_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stoenje {
+            get {
+                object obj = ResourceManager.GetObject("stoenje", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stoenjeFLIPPED {
+            get {
+                object obj = ResourceManager.GetObject("stoenjeFLIPPED", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

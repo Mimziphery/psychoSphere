@@ -52,7 +52,7 @@ namespace PsychoSphere
                 // Update the game
                 _myGame.Update(GameTime);
                 // Update Game at 60fps
-                await Task.Delay(8);
+                await Task.Delay(7);
             }
         }
 
