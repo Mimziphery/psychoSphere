@@ -111,11 +111,11 @@ namespace PsychoSphere
                 playerSprite.X += moveDistance;
 
             }
-            else if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0)
+            if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0)
             {
                 playerSprite.X -= moveDistance;
             }
-            else if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
+            if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
             {
                 playerSprite.Y -= moveDistance; //go up
                 collision = false;
@@ -124,7 +124,7 @@ namespace PsychoSphere
             {
 
                 //snap the player's bottom to the ground's position
-                playerSprite.Y = 550 - playerSprite.Height;
+                
                 collision = true;
 
                 //allow jumping again
@@ -162,29 +162,34 @@ namespace PsychoSphere
 
             gfx.DrawImage(playerSprite.SpriteImage, playerRect);
 
+          
+            foreach(GameSprite platform in platforms)
+            {
+                RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
+                if (playerRect.IntersectsWith(platformRect))
+                {
+
+                    if (platform.Y > playerSprite.Y + playerSprite.Height / 2)
+                    {
+                         //put the player on that platform
+                        collision = true;
+                        break;
+
+                    }
+                    
+
+                }
+                else 
+                    collision = false;
+            }
             foreach (GameSprite platform in platforms)
             {
                 RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
 
                 gfx.DrawImage(platform.SpriteImage, platformRect);
 
-              
-                if (playerRect.IntersectsWith(platformRect))
-                {
-                    if (platform.Y > playerSprite.Y + playerSprite.Height / 2)
-                    {
-                        
-                       
-                        playerSprite.Y = platform.Y - playerSprite.Height; //put the player on that platform
-                        collision = true;
-                        break;
-
-                    }
-
-                }
-               
             }
-            
+
 
         }
 
