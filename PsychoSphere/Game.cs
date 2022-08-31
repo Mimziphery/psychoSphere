@@ -291,6 +291,17 @@ namespace PsychoSphere
                 else 
                     collision = false;
             }
+            foreach (GameSprite stone in stones.ToList())
+            {
+                RectangleF stoneRect = new RectangleF(stone.X, stone.Y, stone.Width, stone.Height);
+                if (playerRect.IntersectsWith(stoneRect))
+                {
+                    stones.Remove(stone);
+                    
+                }
+                
+                   
+            }
 
             foreach (GameSprite platform in platforms)
             {
