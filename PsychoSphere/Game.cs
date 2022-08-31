@@ -15,13 +15,34 @@ namespace PsychoSphere
         public GameSprite playerSprite;
         public static bool isJumping;
         private List<GameSprite> platforms;
-        private GameSprite platform1Sprite;
-        private GameSprite platform2Sprite;
-        private GameSprite platform3Sprite;
+        private List<GameSprite> stones;
         private Boolean collision;
         
 
         public Size Resolution { get; set; }
+
+        public void LoadStones()
+        {
+            Random randomPlatform = new Random();
+            int randPlatform;
+            for (int i=0; i<5; i++)
+            {
+                randPlatform = randomPlatform.Next(0, 10);
+                GameSprite temp = new GameSprite();
+                temp.Height = 40;
+                temp.Width = 40;
+
+                GameSprite platform = platforms[randPlatform];
+                temp.X = platform.X + 20;
+                temp.Y = platform.Y - 50;
+
+                temp.SpriteImage = Properties.Resources.time;
+
+                stones.Add(temp);
+            }
+
+        }
+
 
         public void LoadPlatforms()
         {
@@ -35,7 +56,7 @@ namespace PsychoSphere
             {
                 randPlatform = heightANDdistance.Next(0, 100);
                 distance = heightANDdistance.Next(105, 205);
-                height = heightANDdistance.Next(200, 600);
+                height = heightANDdistance.Next(200, 550);
 
                 y = 632 - height;
 
@@ -74,11 +95,9 @@ namespace PsychoSphere
             // Load new sprite class
             playerSprite = new GameSprite();
             platforms = new List<GameSprite>();
+            stones = new List<GameSprite>();
             isJumping = false;
             collision = false;
-            
-
-
 
             // Load sprite image
             playerSprite.SpriteImage = Properties.Resources.player_01;
@@ -98,6 +117,9 @@ namespace PsychoSphere
             //Add platforms
             LoadPlatforms();
 
+            //Add stones
+            LoadStones();
+
 
 
         }
@@ -106,7 +128,8 @@ namespace PsychoSphere
         {
             // Unload graphics
             // Turn off game music
-
+            stones.Clear();
+            platforms.Clear();
         }
 
         public void Update(TimeSpan gameTime)
@@ -236,7 +259,9 @@ namespace PsychoSphere
             if (playerSprite.X >= 1500 - playerSprite.Width)
             {
                 playerSprite.X = 0;
+                Unload();
                 LoadPlatforms();
+                LoadStones();
             }
                 
 
@@ -266,11 +291,19 @@ namespace PsychoSphere
                 else 
                     collision = false;
             }
+
             foreach (GameSprite platform in platforms)
             {
                 RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
 
                 gfx.DrawImage(platform.SpriteImage, platformRect);
+
+            }
+            foreach (GameSprite stone in stones)
+            {
+                RectangleF stoneRect = new RectangleF(stone.X, stone.Y, stone.Width, stone.Height);
+
+                gfx.DrawImage(stone.SpriteImage, stoneRect);
 
             }
 

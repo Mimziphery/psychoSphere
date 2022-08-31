@@ -199,5 +199,8 @@
   <ItemGroup>
     <None Include="Resources\stoenjeFLIPPED.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\time.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
