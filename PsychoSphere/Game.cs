@@ -17,6 +17,7 @@ namespace PsychoSphere
         private List<GameSprite> platforms;
         private List<GameSprite> stones;
         private List<GameSprite> lifes;
+        private List<GameSprite> asterioids;
         private Boolean collision;
         private int score;
 
@@ -43,7 +44,35 @@ namespace PsychoSphere
             }
 
         }
+        public void LoadAsteroids()
+        {
+            Random randomDistance = new Random();
+            int number = randomDistance.Next(1,5);
+            int distance = 0;
+            for (int i = 0; i < number; i++)
+            {
 
+                GameSprite temp = new GameSprite();
+                temp.Height = 30;
+                temp.Width = 30;
+
+
+                temp.X = 1452;
+                temp.Y = distance;
+
+                temp.SpriteImage = Properties.Resources.stone;
+
+                if (temp.Y > 500)
+                {
+                    temp.Y = randomDistance.Next(100, 200);
+                }
+
+                asterioids.Add(temp);
+                distance += randomDistance.Next(100, 200);
+                
+                
+            }
+        }
         public void LoadLifes()
         {
             int distance = 0;
@@ -60,7 +89,7 @@ namespace PsychoSphere
 
                 temp.SpriteImage = Properties.Resources.lives;
 
-                stones.Add(temp);
+                lifes.Add(temp);
                 distance += 40;
             }
 
@@ -120,6 +149,8 @@ namespace PsychoSphere
             platforms = new List<GameSprite>();
             stones = new List<GameSprite>();
             lifes = new List<GameSprite>();
+            asterioids = new List<GameSprite>();
+
             isJumping = false;
             collision = false;
             score = 0;
@@ -146,6 +177,7 @@ namespace PsychoSphere
 
             LoadLifes();
 
+            LoadAsteroids();
 
 
         }
@@ -161,6 +193,7 @@ namespace PsychoSphere
             // Turn off game music
             stones.Clear();
             platforms.Clear();
+            asterioids.Clear();
         }
 
         public void Update(TimeSpan gameTime)
@@ -170,8 +203,19 @@ namespace PsychoSphere
             // Calculate sprite movement based on Sprite Velocity and GameTimeElapsed
             int moveDistance = (int)(playerSprite.Velocity * gameTimeElapsed);
 
-            UpdateMovement(moveDistance);
+            foreach (GameSprite asteroid in asterioids.ToList())
+            {
+                asteroid.X -= moveDistance;
+            }
 
+           
+
+            UpdateMovement(moveDistance);
+            if (asterioids[0].X <= 0)
+            {
+                asterioids.Clear();
+                LoadAsteroids();
+            }
 
 
         }
@@ -295,7 +339,7 @@ namespace PsychoSphere
                 Unload();
                 LoadPlatforms();
                 LoadStones();
-                LoadLifes();
+                LoadAsteroids();
             }
                 
 
@@ -325,6 +369,24 @@ namespace PsychoSphere
                 else 
                     collision = false;
             }
+            foreach (GameSprite asteroid in asterioids.ToList())
+            {
+                RectangleF asteroidRect = new RectangleF(asteroid.X, asteroid.Y, asteroid.Width, asteroid.Height);
+                if (playerRect.IntersectsWith(asteroidRect))
+                {
+                    asterioids.Remove(asteroid);
+                    lifes.RemoveAt(0);
+                    if(lifes.ToList().Count == 0)
+                    {
+                       Console.WriteLine("You died");
+                    }
+                   
+                    
+                }
+                gfx.DrawImage(asteroid.SpriteImage, asteroidRect);
+            }
+
+
             foreach (GameSprite stone in stones.ToList())
             {
                 RectangleF stoneRect = new RectangleF(stone.X, stone.Y, stone.Width, stone.Height);
@@ -334,8 +396,7 @@ namespace PsychoSphere
                     score ++;
                     
                 }
-                
-                   
+                      
             }
             foreach (GameSprite life in lifes.ToList())
             {
@@ -359,6 +420,8 @@ namespace PsychoSphere
                 gfx.DrawImage(stone.SpriteImage, stoneRect);
 
             }
+           
+
 
 
         }
