@@ -150,6 +150,11 @@ namespace PsychoSphere
 
         }
 
+        public int getScore()
+        {
+            return this.score;
+        }
+
         public void Unload()
         {
             // Unload graphics
@@ -290,6 +295,7 @@ namespace PsychoSphere
                 Unload();
                 LoadPlatforms();
                 LoadStones();
+                LoadLifes();
             }
                 
 

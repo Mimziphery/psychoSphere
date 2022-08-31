@@ -15,7 +15,7 @@ namespace PsychoSphere
     {
         Timer graphicsTimer;
         GameLoop gameLoop = null;
-
+        Game myGame;
         public theGame()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace PsychoSphere
             {
                 // Draw game graphics on Form1
                 gameLoop.Draw(e.Graphics);
+                lblScore.Text = gameLoop._myGame.getScore().ToString();
             }
         }
 
