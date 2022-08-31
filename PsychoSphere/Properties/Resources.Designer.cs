@@ -133,6 +133,36 @@ namespace PsychoSphere.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lives {
+            get {
+                object obj = ResourceManager.GetObject("lives", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lives2 {
+            get {
+                object obj = ResourceManager.GetObject("lives2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mainmenu {
+            get {
+                object obj = ResourceManager.GetObject("mainmenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap meni2 {
             get {
                 object obj = ResourceManager.GetObject("meni2", resourceCulture);
@@ -293,6 +323,16 @@ namespace PsychoSphere.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap score {
+            get {
+                object obj = ResourceManager.GetObject("score", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap skokanje {
             get {
                 object obj = ResourceManager.GetObject("skokanje", resourceCulture);
@@ -376,6 +416,16 @@ namespace PsychoSphere.Properties {
         internal static System.Drawing.Bitmap yes_hover {
             get {
                 object obj = ResourceManager.GetObject("yes_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap youdied {
+            get {
+                object obj = ResourceManager.GetObject("youdied", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

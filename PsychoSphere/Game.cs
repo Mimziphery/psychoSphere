@@ -16,8 +16,9 @@ namespace PsychoSphere
         public static bool isJumping;
         private List<GameSprite> platforms;
         private List<GameSprite> stones;
+        private List<GameSprite> lifes;
         private Boolean collision;
-        
+        private int score;
 
         public Size Resolution { get; set; }
 
@@ -43,6 +44,28 @@ namespace PsychoSphere
 
         }
 
+        public void LoadLifes()
+        {
+            int distance = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                
+                GameSprite temp = new GameSprite();
+                temp.Height = 30;
+                temp.Width = 30;
+
+               
+                temp.X = 480 + distance;
+                temp.Y = 625;
+
+                temp.SpriteImage = Properties.Resources.lives;
+
+                stones.Add(temp);
+                distance += 40;
+            }
+
+        }
+
 
         public void LoadPlatforms()
         {
@@ -50,7 +73,7 @@ namespace PsychoSphere
             int randPlatform;
             int distance;
             int height;
-            int x = 100;
+            int x = 50;
             int y = 0;
             for (int i=0; i<10; i++)
             {
@@ -96,9 +119,10 @@ namespace PsychoSphere
             playerSprite = new GameSprite();
             platforms = new List<GameSprite>();
             stones = new List<GameSprite>();
+            lifes = new List<GameSprite>();
             isJumping = false;
             collision = false;
-
+            score = 0;
             // Load sprite image
             playerSprite.SpriteImage = Properties.Resources.player_01;
 
@@ -119,6 +143,8 @@ namespace PsychoSphere
 
             //Add stones
             LoadStones();
+
+            LoadLifes();
 
 
 
@@ -299,10 +325,18 @@ namespace PsychoSphere
                 if (playerRect.IntersectsWith(stoneRect))
                 {
                     stones.Remove(stone);
+                    score ++;
                     
                 }
                 
                    
+            }
+            foreach (GameSprite life in lifes.ToList())
+            {
+                RectangleF lifeRect = new RectangleF(life.X, life.Y, life.Width, life.Height);
+
+                gfx.DrawImage(life.SpriteImage, lifeRect);
+
             }
 
             foreach (GameSprite platform in platforms)

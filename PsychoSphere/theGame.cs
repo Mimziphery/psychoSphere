@@ -15,10 +15,6 @@ namespace PsychoSphere
     {
         Timer graphicsTimer;
         GameLoop gameLoop = null;
-        Game game;
-       
-
-
 
         public theGame()
         {
@@ -46,6 +42,7 @@ namespace PsychoSphere
             gameLoop = new GameLoop();
             gameLoop.Load(myGame);
             gameLoop.Start();
+            
 
             // Start Graphics Timer
             graphicsTimer.Start();
