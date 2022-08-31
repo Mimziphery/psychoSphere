@@ -157,6 +157,8 @@ namespace PsychoSphere
             isJumping = false;
 
             // Move player sprite, when Arrow Keys are pressed on Keyboard
+           
+
             if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
             {
                 playerSprite.X += moveDistance;
@@ -165,7 +167,7 @@ namespace PsychoSphere
                 moveLeft = false;
 
             }
-            if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0)
+            if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0 & playerSprite.X > 10)
             {
                 playerSprite.X -= moveDistance;
                 moveLeft = true;
