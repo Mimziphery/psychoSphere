@@ -22,3 +22,4 @@ C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\Psyc
 C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.csproj.CoreCompileInputs.cache
 C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.exe
 C:\Users\Damjan\Source\Repos\Mimziphery\psychoSphere\PsychoSphere\obj\Debug\PsychoSphere.pdb
+C:\Users\mimoz\source\repos\PsychoSphere\PsychoSphere\obj\Debug\PsychoSphere.youDiedForm.resources

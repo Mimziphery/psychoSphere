@@ -16,7 +16,7 @@ namespace PsychoSphere
         /// <summary>
         /// Status of GameLoop
         /// </summary>
-        public bool Running { get; private set; }
+        public static bool Running { get; private set; }
 
         /// <summary>
         /// Load Game into GameLoop
@@ -50,7 +50,7 @@ namespace PsychoSphere
                 // Update the current previous game time
                 _previousGameTime = _previousGameTime + GameTime;
                 // Update the game
-                _myGame.Update(GameTime);
+               _myGame.Update(GameTime);
                 // Update Game at 60fps
                 await Task.Delay(8);
             }
@@ -61,9 +61,9 @@ namespace PsychoSphere
         /// </summary>
         public void Stop()
         {
+
             Running = false;
-            _myGame?.Unload();
-            
+
         }
 
         /// <summary>

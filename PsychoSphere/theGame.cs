@@ -25,6 +25,7 @@ namespace PsychoSphere
             graphicsTimer = new Timer();
             graphicsTimer.Interval = 1000 / 120;
             graphicsTimer.Tick += GraphicsTimer_Tick;
+            
         }
 
 
@@ -55,6 +56,14 @@ namespace PsychoSphere
                 // Draw game graphics on Form1
                 gameLoop.Draw(e.Graphics);
                 lblScore.Text = gameLoop._myGame.getScore().ToString();
+                if (gameLoop._myGame.gameOver)
+                {
+                    graphicsTimer.Stop();
+                    this.Hide();
+                    youDiedForm newWindow = new youDiedForm();
+                    newWindow.ShowDialog();
+                    this.Close();
+                }
             }
         }
 

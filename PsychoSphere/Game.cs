@@ -20,6 +20,8 @@ namespace PsychoSphere
         private List<GameSprite> asterioids;
         private Boolean collision;
         private int score;
+        public bool gameOver;
+      
 
         public Size Resolution { get; set; }
 
@@ -47,7 +49,7 @@ namespace PsychoSphere
         public void LoadAsteroids()
         {
             Random randomDistance = new Random();
-            int number = randomDistance.Next(1,5);
+            int number = randomDistance.Next(2,5);
             int distance = 0;
             for (int i = 0; i < number; i++)
             {
@@ -179,6 +181,7 @@ namespace PsychoSphere
 
             LoadAsteroids();
 
+            gameOver = false;
 
         }
 
@@ -211,12 +214,15 @@ namespace PsychoSphere
            
 
             UpdateMovement(moveDistance);
-            if (asterioids[0].X <= 0)
+            if (asterioids.Count == 0)
+            {
+                LoadAsteroids();
+            }
+            else if (asterioids[0].X <= 1)
             {
                 asterioids.Clear();
                 LoadAsteroids();
             }
-
 
         }
 
@@ -319,14 +325,17 @@ namespace PsychoSphere
                 }
 
             }
-           
 
+         
 
 
         }
         private void Restart()
         {
-            Stop();
+            
+            LoadLifes();
+            playerSprite.X = 0;
+            playerSprite.Y = 200;
 
         }
 
@@ -375,13 +384,17 @@ namespace PsychoSphere
                 if (playerRect.IntersectsWith(asteroidRect))
                 {
                     asterioids.Remove(asteroid);
-                    lifes.RemoveAt(0);
-                    if(lifes.ToList().Count == 0)
+                    if(lifes.Count == 0)
                     {
-                       Console.WriteLine("You died");
-                    }
-                   
-                    
+
+                        Stop();
+                        gameOver = true;
+
+                    }else
+                        lifes.RemoveAt(0);
+
+
+
                 }
                 gfx.DrawImage(asteroid.SpriteImage, asteroidRect);
             }
