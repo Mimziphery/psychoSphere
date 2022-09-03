@@ -21,6 +21,7 @@ namespace PsychoSphere
         private Boolean collision;
         private int score;
         public bool gameOver;
+        public int highScore;
       
 
         public Size Resolution { get; set; }
@@ -183,6 +184,7 @@ namespace PsychoSphere
 
             gameOver = false;
 
+            highScore = Properties.Settings.Default.HighScore;
         }
 
         public int getScore()
@@ -386,7 +388,11 @@ namespace PsychoSphere
                     asterioids.Remove(asteroid);
                     if(lifes.Count == 0)
                     {
-
+                        if (score > highScore)
+                        {
+                            Properties.Settings.Default.HighScore = score;
+                            Properties.Settings.Default.Save();
+                        }
                         Stop();
                         gameOver = true;
 

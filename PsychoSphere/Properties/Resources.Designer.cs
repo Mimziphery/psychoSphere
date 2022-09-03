@@ -133,6 +133,16 @@ namespace PsychoSphere.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap highscore {
+            get {
+                object obj = ResourceManager.GetObject("highscore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lives {
             get {
                 object obj = ResourceManager.GetObject("lives", resourceCulture);
@@ -406,6 +416,16 @@ namespace PsychoSphere.Properties {
         internal static System.Drawing.Bitmap time {
             get {
                 object obj = ResourceManager.GetObject("time", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tryagain {
+            get {
+                object obj = ResourceManager.GetObject("tryagain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

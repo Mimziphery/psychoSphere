@@ -15,14 +15,12 @@ namespace PsychoSphere
         public youDiedForm()
         {
             InitializeComponent();
+            lblHighScore.Text = Properties.Settings.Default.HighScore.ToString();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            mainMenu mainForm = new mainMenu();
-            mainForm.ShowDialog();
-            this.Close();
+            Application.Exit();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -37,5 +35,6 @@ namespace PsychoSphere
         {
             Application.Exit();
         }
+        
     }
 }

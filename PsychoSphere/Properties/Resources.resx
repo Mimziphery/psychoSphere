@@ -232,4 +232,10 @@
   <data name="youdied" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\youdied.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="highscore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\highscore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tryagain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tryagain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
