@@ -14,19 +14,24 @@ namespace PsychoSphere
 
         public GameSprite playerSprite;
         public static bool isJumping;
+        public bool gameOver;
+        public int highScore;
+
+
         private List<GameSprite> platforms;
         private List<GameSprite> stones;
         private List<GameSprite> lifes;
         private List<GameSprite> asterioids;
+
+
         private Boolean collision;
         private int score;
-        public bool gameOver;
-        public int highScore;
+     
       
 
         public Size Resolution { get; set; }
 
-        public void LoadStones()
+        public void LoadStones() //load stones
         {
             Random randomPlatform = new Random();
             int randPlatform;
@@ -47,10 +52,10 @@ namespace PsychoSphere
             }
 
         }
-        public void LoadAsteroids()
+        public void LoadAsteroids() //load asterioids
         {
             Random randomDistance = new Random();
-            int number = randomDistance.Next(2,5);
+            int number = randomDistance.Next(2,5); //each scene has random number of asteroids between 2 and 5
             int distance = 0;
             for (int i = 0; i < number; i++)
             {
@@ -65,21 +70,21 @@ namespace PsychoSphere
 
                 temp.SpriteImage = Properties.Resources.stone;
 
-                if (temp.Y > 500)
+                if (temp.Y > 500) //dont draw on the bottom interface
                 {
                     temp.Y = randomDistance.Next(100, 200);
                 }
 
                 asterioids.Add(temp);
-                distance += randomDistance.Next(100, 200);
+                distance += randomDistance.Next(100, 200); //asteroids are on a random distance between each other 
                 
                 
             }
         }
-        public void LoadLifes()
+        public void LoadLifes() //load lifes
         {
             int distance = 0;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++) //each game we have 4 lifes
             {
                 
                 GameSprite temp = new GameSprite();
@@ -99,7 +104,7 @@ namespace PsychoSphere
         }
 
 
-        public void LoadPlatforms()
+        public void LoadPlatforms() //load platforms on a random number - algorithm 
         {
             Random heightANDdistance = new Random();
             int randPlatform;
@@ -107,19 +112,19 @@ namespace PsychoSphere
             int height;
             int x = 50;
             int y = 0;
-            for (int i=0; i<10; i++)
+            for (int i=0; i<10; i++) //for each scene, 10 platforms
             {
-                randPlatform = heightANDdistance.Next(0, 100);
-                distance = heightANDdistance.Next(105, 205);
-                height = heightANDdistance.Next(200, 550);
+                randPlatform = heightANDdistance.Next(0, 100); //generate random number
+                distance = heightANDdistance.Next(105, 205); // generate random distance between 105 and 205
+                height = heightANDdistance.Next(200, 550); // generate random height
 
                 y = 632 - height;
 
                 GameSprite temp = new GameSprite();
-                temp.X = x;
+                temp.X = x; //set the width and height from the random functions above 
                 temp.Y = y;
                 
-                if (randPlatform % 3 == 0)
+                if (randPlatform % 3 == 0) //function for the random platforms sprites, so we can choose one of the three platforms
                 {
                     temp.SpriteImage = Properties.Resources.platform1;
                     temp.Height = 50;
@@ -139,13 +144,32 @@ namespace PsychoSphere
                 }
                     
 
-                platforms.Add(temp);
-                x += distance;
+                platforms.Add(temp); //add them on the list 
+                x += distance; //add the starter point for the next platform
 
             }
 
         }
-        public void Load()
+
+        private void LoadPlayer()
+        {
+            // Load player image
+            playerSprite.SpriteImage = Properties.Resources.player_01;
+
+            // Set player player sprite height & width in pixels
+            playerSprite.Width = 60;
+            playerSprite.Height = 85;
+
+
+            // Set player sprite coodinates
+            playerSprite.X = 0;
+            playerSprite.Y = 200;
+
+            // Set sprite Velocity
+            playerSprite.Velocity = 300;
+
+        }
+        public void Load() //Load game and its sprites
         {
             // Load new sprite class
             playerSprite = new GameSprite();
@@ -154,23 +178,15 @@ namespace PsychoSphere
             lifes = new List<GameSprite>();
             asterioids = new List<GameSprite>();
 
+            // Load game variables
             isJumping = false;
             collision = false;
+            gameOver = false;
             score = 0;
-            // Load sprite image
-            playerSprite.SpriteImage = Properties.Resources.player_01;
+            highScore = Properties.Settings.Default.HighScore; //highscore per user
 
-            // Set sprite height & width in pixels
-            playerSprite.Width = 60;
-            playerSprite.Height = 85;
-
-
-            // Set sprite coodinates
-            playerSprite.X = 0;
-            playerSprite.Y = 200;
-
-            // Set sprite Velocity
-            playerSprite.Velocity = 300;
+            //Load game sprites
+            LoadPlayer();
 
             //Add platforms
             LoadPlatforms();
@@ -178,44 +194,32 @@ namespace PsychoSphere
             //Add stones
             LoadStones();
 
+            //Load lifes
             LoadLifes();
 
+            //Load Asteroids
             LoadAsteroids();
-
-            gameOver = false;
-
-            highScore = Properties.Settings.Default.HighScore;
         }
 
-        public int getScore()
+        public int getScore() //get score so the theGame Form can write it
         {
             return this.score;
         }
 
         public void Unload()
         {
-            // Unload graphics
-            // Turn off game music
+            // Clear all lists
             stones.Clear();
             platforms.Clear();
             asterioids.Clear();
         }
 
-        public void Update(TimeSpan gameTime)
+        private void MoveAsteroids() 
         {
-            // Gametime elapsed
-            double gameTimeElapsed = gameTime.TotalMilliseconds / 1000;
-            // Calculate sprite movement based on Sprite Velocity and GameTimeElapsed
-            int moveDistance = (int)(playerSprite.Velocity * gameTimeElapsed);
-
             foreach (GameSprite asteroid in asterioids.ToList())
             {
-                asteroid.X -= moveDistance;
+                asteroid.X -= 5; //move them to the left by 5
             }
-
-           
-
-            UpdateMovement(moveDistance);
             if (asterioids.Count == 0)
             {
                 LoadAsteroids();
@@ -225,68 +229,9 @@ namespace PsychoSphere
                 asterioids.Clear();
                 LoadAsteroids();
             }
-
         }
-
-        bool moveLeft = false;
-        bool moveRight = false;
-
-        bool flagLeft = true;
-        bool flagRight = true;
-        private void UpdateMovement(int moveDistance)
+        private void UpdatePictures() // update player pictures based on his movement directions or actions
         {
-            moveRight = false;
-            moveLeft = false;
-            isJumping = false;
-
-            // Move player sprite, when Arrow Keys are pressed on Keyboard
-           
-
-            if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
-            {
-                playerSprite.X += moveDistance;
-                moveRight = true;
-
-                moveLeft = false;
-
-            }
-            if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0 & playerSprite.X > 10)
-            {
-                playerSprite.X -= moveDistance;
-                moveLeft = true;
-
-                moveRight = false;
-            }
-            if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
-            {
-                playerSprite.Y -= moveDistance; //go up
-                isJumping = true;
-
-                collision = false;
-                
-            }
-            else if(playerSprite.Y + playerSprite.Height > 550) //check if played touched the ground
-            {
-
-                //snap the player's bottom to the ground's position
-                
-                collision = true;
-
-                //allow jumping again
-                isJumping = false;
-            }
-            else if (collision)
-            {
-                playerSprite.Y += 0;
-                isJumping = false;
-            }
-            else
-            {
-                playerSprite.Y += moveDistance; //go down
-
-            }
-
-
             if (moveLeft)
             {
                 if (flagLeft)
@@ -325,43 +270,34 @@ namespace PsychoSphere
                     playerSprite.SpriteImage = Properties.Resources.skokanje;
 
                 }
-
-            }
-
-         
-
-
-        }
-        private void Restart()
-        {
-            
-            LoadLifes();
-            playerSprite.X = 0;
-            playerSprite.Y = 200;
-
-        }
-
-        public void Draw(Graphics gfx)
-        {
-            // Draw Player Sprite
-            if (playerSprite.X >= 1500 - playerSprite.Width)
-            {
-                playerSprite.X = 0;
-                Unload();
-                LoadPlatforms();
-                LoadStones();
-                LoadAsteroids();
-            }
                 
 
+            }
+        }
+        public void Update(TimeSpan gameTime)
+        {
+            // Gametime elapsed
+            double gameTimeElapsed = gameTime.TotalMilliseconds / 1000;
 
-            //playerSprite.Draw(gfx);
+            // Calculate sprite movement based on Sprite Velocity and GameTimeElapsed
+            int moveDistance = (int)(playerSprite.Velocity * gameTimeElapsed);
+
+            MoveAsteroids(); // Update movement of the enemies
+            
+
+            UpdateMovement(moveDistance); //Update movement of the player
+
+            UpdatePictures(); //change pictures for player movement animation
+
+            CheckCollision();
+
+        }
+
+       
+        private void CheckCollision()
+        {
             RectangleF playerRect = new RectangleF(playerSprite.X, playerSprite.Y, playerSprite.Width, playerSprite.Height);
-
-            gfx.DrawImage(playerSprite.SpriteImage, playerRect);
-
-          
-            foreach(GameSprite platform in platforms)
+            foreach (GameSprite platform in platforms)
             {
                 RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
                 if (playerRect.IntersectsWith(platformRect))
@@ -369,24 +305,26 @@ namespace PsychoSphere
 
                     if (platform.Y > playerSprite.Y + playerSprite.Height - 10)
                     {
-                         //put the player on that platform
+                        
                         collision = true;
                         break;
 
                     }
-                    
+
 
                 }
-                else 
+                else
                     collision = false;
             }
+
             foreach (GameSprite asteroid in asterioids.ToList())
             {
                 RectangleF asteroidRect = new RectangleF(asteroid.X, asteroid.Y, asteroid.Width, asteroid.Height);
+               
                 if (playerRect.IntersectsWith(asteroidRect))
                 {
                     asterioids.Remove(asteroid);
-                    if(lifes.Count == 0)
+                    if (lifes.Count == 0)
                     {
                         if (score > highScore)
                         {
@@ -396,27 +334,109 @@ namespace PsychoSphere
                         Stop();
                         gameOver = true;
 
-                    }else
+                    }
+                    else
                         lifes.RemoveAt(0);
 
-
-
                 }
-                gfx.DrawImage(asteroid.SpriteImage, asteroidRect);
             }
-
-
             foreach (GameSprite stone in stones.ToList())
             {
                 RectangleF stoneRect = new RectangleF(stone.X, stone.Y, stone.Width, stone.Height);
                 if (playerRect.IntersectsWith(stoneRect))
                 {
                     stones.Remove(stone);
-                    score ++;
-                    
+                    score++;
+
                 }
-                      
+
             }
+        }
+
+        bool moveLeft = false;
+        bool moveRight = false;
+
+        bool flagLeft = true; //variables for UpdateMovement function
+        bool flagRight = true;
+
+        private void UpdateMovement(int moveDistance)
+        {
+            moveRight = false; //in each frame executed they will be refreshed
+            moveLeft = false;
+           
+
+            // Move player sprite, when Arrow Keys are pressed on Keyboard
+            if ((Keyboard.GetKeyStates(Key.Right) & KeyStates.Down) > 0)
+            {
+                playerSprite.X += moveDistance; 
+                moveRight = true;
+
+            }
+            if ((Keyboard.GetKeyStates(Key.Left) & KeyStates.Down) > 0 & playerSprite.X > 10) //chek if the player come to the left end
+            {
+                playerSprite.X -= moveDistance;
+                moveLeft = true;
+
+            }
+            if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0) //player jump
+            {
+                playerSprite.Y -= moveDistance;
+
+                isJumping = true;
+                
+            }
+            
+            else if(playerSprite.Y + playerSprite.Height > 550) //check if player touched the ground
+            {
+                
+                collision = true;
+
+                //allow jumping again
+                isJumping = false;
+            }
+            else if (collision) //check if player had collision with platforms or the ground
+            {
+             
+                isJumping = false;
+            }
+            else
+            {
+                
+                playerSprite.Y += moveDistance; //go down
+
+            }
+            if (playerSprite.X >= 1500 - playerSprite.Width) // check if played comed to the right end, refresh scene
+            {
+
+                RefreshScene();
+                
+            }
+
+        }
+        private void RefreshScene()
+        {
+            playerSprite.X = 0;
+            Unload();
+            LoadPlatforms();
+            LoadStones();
+            LoadAsteroids();
+        }
+        public void Draw(Graphics gfx)
+        {
+            // Draw Player Sprite
+            RectangleF playerRect = new RectangleF(playerSprite.X, playerSprite.Y, playerSprite.Width, playerSprite.Height);
+
+            gfx.DrawImage(playerSprite.SpriteImage, playerRect);
+
+            // Draw asterioids
+            foreach (GameSprite asteroid in asterioids.ToList())
+            {
+                RectangleF asteroidRect = new RectangleF(asteroid.X, asteroid.Y, asteroid.Width, asteroid.Height);
+
+                gfx.DrawImage(asteroid.SpriteImage, asteroidRect);
+            }
+
+            // Draw lifes 
             foreach (GameSprite life in lifes.ToList())
             {
                 RectangleF lifeRect = new RectangleF(life.X, life.Y, life.Width, life.Height);
@@ -425,6 +445,7 @@ namespace PsychoSphere
 
             }
 
+            // Draw platforms
             foreach (GameSprite platform in platforms)
             {
                 RectangleF platformRect = new RectangleF(platform.X, platform.Y, platform.Width, platform.Height);
@@ -432,6 +453,8 @@ namespace PsychoSphere
                 gfx.DrawImage(platform.SpriteImage, platformRect);
 
             }
+
+            //Draw stones
             foreach (GameSprite stone in stones)
             {
                 RectangleF stoneRect = new RectangleF(stone.X, stone.Y, stone.Width, stone.Height);
@@ -439,10 +462,6 @@ namespace PsychoSphere
                 gfx.DrawImage(stone.SpriteImage, stoneRect);
 
             }
-           
-
-
-
         }
 
     }
