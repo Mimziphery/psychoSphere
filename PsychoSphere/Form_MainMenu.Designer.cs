@@ -55,9 +55,9 @@ namespace PsychoSphere
             // 
             this.optionsButton.BackColor = System.Drawing.Color.Transparent;
             this.optionsButton.Image = global::PsychoSphere.Properties.Resources.instructions;
-            this.optionsButton.Location = new System.Drawing.Point(292, 274);
+            this.optionsButton.Location = new System.Drawing.Point(313, 275);
             this.optionsButton.Name = "optionsButton";
-            this.optionsButton.Size = new System.Drawing.Size(224, 31);
+            this.optionsButton.Size = new System.Drawing.Size(181, 26);
             this.optionsButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.optionsButton.TabIndex = 1;
             this.optionsButton.TabStop = false;

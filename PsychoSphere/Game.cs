@@ -110,8 +110,8 @@ namespace PsychoSphere
             int randPlatform;
             int distance;
             int height;
-            int x = 50;
-            int y = 0;
+            int x = 50; //starter position for x
+            int y = 0; 
             for (int i=0; i<10; i++) //for each scene, 10 platforms
             {
                 randPlatform = heightANDdistance.Next(0, 100); //generate random number
@@ -145,7 +145,7 @@ namespace PsychoSphere
                     
 
                 platforms.Add(temp); //add them on the list 
-                x += distance; //add the starter point for the next platform
+                x += distance; //add the distance for the next platform
 
             }
 
