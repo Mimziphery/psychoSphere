@@ -401,8 +401,8 @@ namespace PsychoSphere
             }
             else
             {
-                
                 playerSprite.Y += moveDistance; //go down
+
 
             }
             if (playerSprite.X >= 1500 - playerSprite.Width) // check if played comed to the right end, refresh scene
@@ -421,6 +421,8 @@ namespace PsychoSphere
             LoadStones();
             LoadAsteroids();
         }
+
+
         public void Draw(Graphics gfx)
         {
             // Draw Player Sprite

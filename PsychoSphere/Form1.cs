@@ -29,12 +29,12 @@ namespace PsychoSphere
 
         private void optionsButton_MouseHover(object sender, EventArgs e)
         {
-            optionsButton.Image = Properties.Resources.options_hover;
+            
         }
 
         private void optionsButton_MouseLeave(object sender, EventArgs e)
         {
-            optionsButton.Image = Properties.Resources.options_01;
+            
         }
 
         private void exitButton_MouseHover(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace PsychoSphere
 
         private void optionsButton_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Use arrow keys to move left and right. Use space for jumping.");
         }
 
         private void exitButton_Click(object sender, EventArgs e)
