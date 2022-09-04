@@ -162,8 +162,11 @@ namespace PsychoSphere
 
 
             // Set player sprite coodinates
-            playerSprite.X = 0;
-            playerSprite.Y = 200;
+
+            GameSprite platform = platforms[0];
+            playerSprite.X = platform.X;
+            playerSprite.Y = platform.Y - playerSprite.Height * 2;
+            collision = true;
 
             // Set sprite Velocity
             playerSprite.Velocity = 300;
@@ -185,9 +188,6 @@ namespace PsychoSphere
             score = 0;
             highScore = Properties.Settings.Default.HighScore; //highscore per user
 
-            //Load game sprites
-            LoadPlayer();
-
             //Add platforms
             LoadPlatforms();
 
@@ -199,6 +199,9 @@ namespace PsychoSphere
 
             //Load Asteroids
             LoadAsteroids();
+
+            //Load game sprites
+            LoadPlayer();
         }
 
         public int getScore() //get score so the theGame Form can write it
@@ -388,11 +391,10 @@ namespace PsychoSphere
             
             else if(playerSprite.Y + playerSprite.Height > 550) //check if player touched the ground
             {
-                
-                collision = true;
 
-                //allow jumping again
-                isJumping = false;
+                lifes.RemoveAt(0);
+                LoadPlayer();
+
             }
             else if (collision) //check if player had collision with platforms or the ground
             {
